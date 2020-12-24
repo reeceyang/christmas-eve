@@ -1,0 +1,118 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Christmas Eve Eve</title>
+  <meta name="description" content="Christmas Eve">
+  <meta name="author" content="Reece Yang">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Crimson Text', serif;
+    }
+
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: #0f0f23;
+      background-image: url('roberto-nickson-5PQn41LFsQk-unsplash.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      height: 100%;
+      color: #eeeeee;
+      max-width: 50em;
+      text-align: center;
+      margin: auto;
+      margin-top: 5em;
+      mix-blend-mode: difference;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 1.75em;
+    }
+    p {
+      font-size: 1.25em;
+    }
+    footer {
+      color: inherit;
+      text-decoration: none;
+      margin-top: 5em;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: inherit;
+      cursor: pointer;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1 id="banner">Today is Christmas</h1>
+  <br>
+  <h3 id="days-left"></h3>
+  <footer>
+    <p>Photo by <a href="https://unsplash.com/@rpnickson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Roberto Nickson</a> on <a href="https://unsplash.com/s/photos/christmas?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.</p>
+    <em><p>Made with &lt;3 by <a href="https://github.com/reeceyang">Reece</a>. View <a target="_blank" href="https://github.com/reeceyang/christmas-eve">source</a>.</p></em>
+  </footer>
+</body>
+<script src="snowstorm-min.js"></script>
+<script>
+snowStorm.animationInterval = 33;
+snowStorm.snowStick = false;
+// from https://stackoverflow.com/questions/563406/add-days-to-javascript-date
+Date.prototype.addDays = function(days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
+var date = new Date();
+var daysLeft = 0;
+var eves = ""
+
+while (date.getMonth() != 11 || date.getDate() != 25) {
+  date = date.addDays(1);
+  daysLeft++;
+  eves += " Eve";
+}
+
+if (daysLeft == 0) {
+  document.getElementById("banner").innerHTML = "Merry Christmas!";
+  document.title = "Merry Christmas!";
+} else {
+  document.getElementById("banner").innerHTML += eves + ".";
+  document.title = "Christmas" + eves;
+  if (daysLeft == 1) {
+    document.getElementById("days-left").innerHTML = "Christmas is tomorrow!";
+  } else {
+    document.getElementById("days-left").innerHTML = "There are " + daysLeft + " days left until Christmas.";
+  }
+}
+</script>
+
+</html>
